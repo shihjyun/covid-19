@@ -34,7 +34,8 @@ covid_all <- Confirmed %>%
   group_by(country, date) %>% 
   summarise(acum_confirmed = sum(acum_confirmed),
             acum_deaths = sum(acum_deaths),
-            acum_recovered = sum(acum_recovered))
+            acum_recovered = sum(acum_recovered)) %>% 
+  filter(country != "Mainland China")
 
 write_csv(covid_all, "data/covid_all.csv")
 
