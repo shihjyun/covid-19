@@ -29,6 +29,14 @@ covid_all <- Confirmed %>%
   mutate(state_country = ifelse(`Country/Region` == "Mainland China",
                                 `Province/State`,
                                 `Country/Region`)) %>% 
-  rename("date" = Date)
+  rename("date" = Date,
+         "country" = `Country/Region`) %>% 
+  group_by(country, date) %>% 
+  summarise(acum_confirmed = sum(acum_confirmed),
+            acum_deaths = sum(acum_deaths),
+            acum_recovered = sum(acum_recovered))
 
 write_csv(covid_all, "data/covid_all.csv")
+
+
+
