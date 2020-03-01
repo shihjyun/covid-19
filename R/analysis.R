@@ -25,6 +25,9 @@ Recovered <- wrangle_covid_raw(Recovered) %>%
 covid_all <- Confirmed %>% 
   mutate(acum_deaths = Deaths$acum_deaths) %>% 
   mutate(acum_recovered = Recovered$acum_recovered) %>% 
-  select(-value, -Lat, -Long)
+  select(-value, -Lat, -Long) %>% 
+  mutate(state_country = ifelse(`Country/Region` == "Mainland China",
+                                `Province/State`,
+                                `Country/Region`))
 
 write_csv(covid_all, "data/covid_all.csv")
