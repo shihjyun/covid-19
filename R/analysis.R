@@ -28,6 +28,7 @@ covid_all <- Confirmed %>%
   select(-value, -Lat, -Long) %>% 
   mutate(state_country = ifelse(`Country/Region` == "Mainland China",
                                 `Province/State`,
-                                `Country/Region`))
+                                `Country/Region`)) %>% 
+  rename("date" = Date)
 
 write_csv(covid_all, "data/covid_all.csv")
