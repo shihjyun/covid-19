@@ -37,7 +37,7 @@ covid_all <- Confirmed %>%
             acum_recovered = sum(acum_recovered)) %>% 
   filter(country != "Mainland China")
 
-write_csv(covid_all, "data/covid_all.csv")
+write_csv(covid_all, "data/covid_data.csv")
 
 
 
